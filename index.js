@@ -45,7 +45,9 @@ app.use(express.json());
 //    );
 //    console.log(sql);
 //  });
-
+app.get('/',(req,res)=>{
+  return res.send("hello")
+})
  app.get('/get_case_intake',(req,res)=>{
     let sql=`SELECT * FROM case_intake`;
     db.query(sql,
