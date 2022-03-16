@@ -49,14 +49,15 @@ app.get('/',(req,res)=>{
   return res.send("hello")
 })
  app.get('/get_case_intake',(req,res)=>{
-    let sql=`SELECT * FROM case_intake`;
-    db.query(sql,
-     (err, result) => {
-       if (err) return res.status(500);
-       return res.json(result);
-     }
-   );
+  //   let sql=`SELECT * FROM case_intake`;
+  //   db.query(sql,
+  //    (err, result) => {
+  //      if (err) return res.status(500);
+  //      return res.json(result);
+  //    }
+  //  );
    console.log(sql);
+   return res.json("dskjsd")
  });
 
 
