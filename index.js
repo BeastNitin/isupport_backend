@@ -71,5 +71,5 @@ app.post('/post_case_intake', (req, res) => {
   console.log(sql);
 });
 
-const port = 5500;
+const port = 6000;
 app.listen(port, () => console.info(`[Server] > Listening on port ${port}`));
