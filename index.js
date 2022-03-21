@@ -60,7 +60,7 @@ app.get('/get_case_intake', (req, res) => {
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
-      s;
+
       return res.status(500);
     }
     return res.json(result);
