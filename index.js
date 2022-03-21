@@ -55,24 +55,28 @@ app.use(express.json());
 //   });
 // });
 
-app.get('/', (req, res) => {
-  return res.send('hello');
-});
 app.get('/get_case_intake', (req, res) => {
-  console.log(db);
   let sql = `SELECT * FROM case_intake`;
   db.query(sql, (err, result) => {
-    if (err) return res.status(500);
+    if (err) {
+      console.log(err);
+      return res.status(500);
+    }
     return res.json(result);
   });
 });
 
 app.post('/post_case_intake', (req, res) => {
-  let sql = `INSERT INTO case_intake (case_no,case_reporter_comments,case_narative) VALUES
-   (15,"ram","kkh")`;
+  console.log('req.body', req.body);
+  let sql = `insert into case_intake (case_reporter_comments,case_narative) values ("${req.body.caseNarrative}","${req.body.reportersComment}")`;
   db.query(sql, (err, result) => {
-    if (err) return res.status(500);
-    return res.json(result);
+    if (err) {
+      console.log('error', err);
+      return res.status(500);
+    } else {
+      console.log('sdkjsd');
+      return res.json(result);
+    }
   });
   console.log(sql);
 });
