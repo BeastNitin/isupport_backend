@@ -60,6 +60,7 @@ app.get('/get_case_intake', (req, res) => {
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
+      s;
       return res.status(500);
     }
     return res.json(result);
@@ -68,7 +69,7 @@ app.get('/get_case_intake', (req, res) => {
 
 app.post('/post_case_intake', (req, res) => {
   console.log('req.body', req.body);
-  let sql = `insert into case_intake (case_reporter_comments,case_narative) values ("${req.body.caseNarrative}","${req.body.reportersComment}")`;
+  let sql = `insert into case_intake (case_no,case_reporter_comments,case_narative) values ("${req.body.case_no}","${req.body.caseNarrative}","${req.body.reportersComment}")`;
   db.query(sql, (err, result) => {
     if (err) {
       console.log('error', err);
