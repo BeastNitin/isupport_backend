@@ -1,12 +1,12 @@
-require("dotenv").config({ path: `${__dirname}/.env` });
+require('dotenv').config({ path: `${__dirname}/.env` });
 
-const express = require("express");
-const cors = require("cors");
-const session = require("express-session");
-const flash = require("express-flash");
-const db = require("./utilities/creds.js");
-const bodyparser = require("body-parser");
-const res = require("express/lib/response");
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const flash = require('express-flash');
+const db = require('../nodejs new/utilities/creds.js');
+const bodyparser = require('body-parser');
+const res = require('express/lib/response');
 // const homeRoutes = require("./routes/home-routes");
 // const signinRoutes = require("./routes/signin-routes");
 // const facilityCrud = require("./cruds/facility-crud");
@@ -19,6 +19,7 @@ const res = require("express/lib/response");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 //app.use(bodyparser())
 // app.use(session({ secret: "mySecretKey", resave: true }));
 // app.use(flash());
@@ -45,43 +46,40 @@ app.use(express.json());
 //    );
 //    console.log(sql);
 //  });
-console.log(db)
-app.get('/',(req,res)=>{
 
-  let sql=`SELECT * FROM case_intake`;
-  db.query(sql,
-   (err, result) => {
-     if (err) return res.status(500);
-     return res.json(result);
-   }
- );
-})
- app.get('/get_case_intake',(req,res)=>{
-  //   let sql=`SELECT * FROM case_intake`;
-  //   db.query(sql,
-  //    (err, result) => {
-  //      if (err) return res.status(500);
-  //      return res.json(result);
-  //    }
-  //  );
-   console.log(sql);
-   return res.json("dskjsd")
- });
+// app.get('/', (req, res) => {
+//   let sql = `SELECT * FROM case_intake`;
+//   db.query(sql, (err, result) => {
+//     if (err) return res.status(500);
+//     return res.json(result);
+//   });
+// });
 
+app.get('/get_case_intake', (req, res) => {
+  let sql = `SELECT * FROM case_intake`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log(err);s
+      return res.status(500);
+    }
+    return res.json(result);
+  });
+});
 
- app.post('/post_case_intake',(req,res)=>{
-   let sql=`INSERT INTO case_intake (case_no,case_reporter_comments,case_narative) VALUES
-   (15,"ram","kkh")`;
-   db.query(sql,(err,result) =>{
-   if(err)return res.status(500);
-   return res.json(result);
- }
- );
-console.log(sql);
- });
-
-    
-
+app.post('/post_case_intake', (req, res) => {
+  console.log('req.body', req.body);
+  let sql = `insert into case_intake (case_no,case_reporter_comments,case_narative) values ("${req.body.case_no}","${req.body.caseNarrative}","${req.body.reportersComment}")`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log('error', err);
+      return res.status(500);
+    } else {
+      console.log('sdkjsd');
+      return res.json(result);
+    }
+  });
+  console.log(sql);
+});
 
 const port = parseInt(process.env.PORT);
 app.listen(port, () => console.info(`[Server] > Listening on port ${port}`));
