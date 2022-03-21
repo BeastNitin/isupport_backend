@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "express": "^4.17.3",
     "express-flash": "0.0.2",
     "express-session": "^1.17.2",
-    "mysql": "^2.18.1"
+    "mysql": "github:mysqljs/mysql",
+    "nodemon": "^2.0.15"
   }
 }

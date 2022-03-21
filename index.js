@@ -1,5 +1,6 @@
 require('dotenv').config({ path: `${__dirname}/.env` });
 
+
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
@@ -7,6 +8,7 @@ const flash = require('express-flash');
 const db = require('../nodejs new/utilities/creds.js');
 const bodyparser = require('body-parser');
 const res = require('express/lib/response');
+
 
 // const homeRoutes = require("./routes/home-routes");
 // const signinRoutes = require("./routes/signin-routes");
@@ -61,11 +63,13 @@ app.get('/get_case_intake', (req, res) => {
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
+
       return res.status(500);
     }
     return res.json(result);
   });
 });
+
 
 app.post('/post_case_intake', (req, res) => {
   console.log('req.body', req.body);
