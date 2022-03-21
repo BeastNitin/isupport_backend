@@ -7,6 +7,7 @@ const flash = require('express-flash');
 const db = require('../nodejs new/utilities/creds.js');
 const bodyparser = require('body-parser');
 const res = require('express/lib/response');
+
 // const homeRoutes = require("./routes/home-routes");
 // const signinRoutes = require("./routes/signin-routes");
 // const facilityCrud = require("./cruds/facility-crud");
@@ -59,7 +60,7 @@ app.get('/get_case_intake', (req, res) => {
   let sql = `SELECT * FROM case_intake`;
   db.query(sql, (err, result) => {
     if (err) {
-      console.log(err);s
+      console.log(err);
       return res.status(500);
     }
     return res.json(result);
